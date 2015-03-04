@@ -1,5 +1,5 @@
 package models;
-import java.util.ArrayList;
+ import java.util.ArrayList;
 import java.util.List;
 public class Product {
 	 private static List<Product> products;
