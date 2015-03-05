@@ -26,9 +26,12 @@ private static final Form<Product> productForm = Form.form(Product.class);
 		public static Result details( String ean) {
 		return ok();
 	}
-		public static Result save() {
-		return ok();
-	}
+	public static Result save() {
+    Form<Product> boundForm = productForm.bindFromRequest();
+    Product product = boundForm.get();
+    product.save();
+    return ok(String.format("Saved product %s", product));
+  }
 	
 		
 	}
