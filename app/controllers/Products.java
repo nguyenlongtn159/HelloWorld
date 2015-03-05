@@ -24,9 +24,14 @@ private static final Form<Product> productForm = Form.form(Product.class);
 	public static Result newProduct(){
   return ok(details.render(productForm));
 }
-		public static Result details( String ean) {
-		return ok();
-	}
+	 public static Result details(String ean) {
+    final Product product = Product.findByEan(ean);
+    if (product == null) {
+      return notFound(String.format("Product %s does not exist.", ean));
+    }
+    Form<Product> filledForm = productForm.fill(product);
+    return ok(details.render(filledForm));
+  }
 	
 	// kiem tra xem co loi hay khong
 	public static Result save() {
@@ -40,6 +45,7 @@ private static final Form<Product> productForm = Form.form(Product.class);
   flash("success", String.format("Successfully added product %s", product));
   return redirect(routes.Products.list());
 }
+ 
  
 		
 	}
