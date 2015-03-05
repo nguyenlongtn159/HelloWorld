@@ -6,6 +6,7 @@ import views.html.*;
 import java.util.List;
 import models.Product;
 import views.html.products.*;
+import play.data.validation.Constraints; // kiem tra loi ko dien
 // import thư mục liên quan
 // import play.mvc.*;
 //import views.html.*;
@@ -26,12 +27,19 @@ private static final Form<Product> productForm = Form.form(Product.class);
 		public static Result details( String ean) {
 		return ok();
 	}
-	public static Result save() {
-    Form<Product> boundForm = productForm.bindFromRequest();
-    Product product = boundForm.get();
-    product.save();
-    return ok(String.format("Saved product %s", product));
-  }
 	
+	// kiem tra xem co loi hay khong
+	public static Result save() {
+  Form<Product> boundForm = productForm.bindFromRequest();
+  if (boundForm.hasErrors()) {
+    flash("error", "Please correct the form below.");
+    return badRequest(details.render(boundForm));
+  }
+  Product product = boundForm.get();
+  product.save();
+  flash("success", String.format("Successfully added product %s", product));
+  return redirect(routes.Products.list());
+}
+ 
 		
 	}

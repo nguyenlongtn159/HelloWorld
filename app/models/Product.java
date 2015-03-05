@@ -1,6 +1,7 @@
 package models;
  import java.util.ArrayList;
 import java.util.List;
+import play.data.validation.Constraints;
 public class Product {
 	 private static List<Product> products;
   static {
@@ -16,8 +17,10 @@ public class Product {
     products.add(new Product("5555555555555", "Paperclips 5",
         "Paperclips description 5"));
   }
- 
+  
+ @Constraints.Required
   public String ean;
+  @Constraints.Required
   public String name;
   public String description;
  
