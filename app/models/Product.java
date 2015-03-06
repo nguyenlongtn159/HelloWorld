@@ -2,6 +2,7 @@ package models;
  import java.util.ArrayList;
 import java.util.List;
 import play.data.validation.Constraints;
+import controllers.Products;
 public class Product {
 	 private static List<Product> products;
   static {
@@ -20,8 +21,10 @@ public class Product {
   
  @Constraints.Required
   public String ean;
+  
   @Constraints.Required
   public String name;
+  
   public String description;
  
   public Product() {}
