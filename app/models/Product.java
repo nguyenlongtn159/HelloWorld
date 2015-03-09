@@ -3,7 +3,9 @@ package models;
 import java.util.List;
 import play.data.validation.Constraints;
 import controllers.Products;
+import java.util.LinkedList; // can de dung linkedlist
 public class Product {
+	public List<Tag> tags = new LinkedList<Tag>();
 	 private static List<Product> products;
   static {
     products = new ArrayList<Product>();
@@ -59,6 +61,7 @@ public class Product {
     }
     return results;
   }
+  
  
   public static boolean remove(Product product) {
     return products.remove(product);
@@ -68,4 +71,5 @@ public class Product {
     products.remove(findByEan(this.ean));
     products.add(this);
   }
+  
 }
