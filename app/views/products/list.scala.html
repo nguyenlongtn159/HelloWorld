@@ -23,14 +23,14 @@
     <tbody>
     @for(product <- products) {
       <tr>
-        <td><a href="@routes.Products.details(product.ean)">
+        <td><a href="@routes.Products.details(product)">
           @product.ean
         </a></td>
-        <td><a href="@routes.Products.details(product.ean)">
+        <td><a href="@routes.Products.details(product)">
 @product.name</a></td>
-        <td><a href="@routes.Products.details(product.ean)">
+        <td><a href="@routes.Products.details(product)">
 @product.description</a></td>
-  <td><a onclick="del('@routes.Products.delete(product.ean)')">
+  <td><a onclick="del('@routes.Products.delete(product)')">
                  <span class="glyphicon glyphicon-trash"></span>
             </a></td>
       </tr>

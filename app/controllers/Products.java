@@ -25,18 +25,18 @@ private static final Form<Product> productForm = Form.form(Product.class);
 	public static Result newProduct(){
   return ok(details.render(productForm));
 }
-	 public static Result details(String ean) {
-    final Product product = Product.findByEan(ean);
+	 public static Result details(Product product) {
+ //  final Product product = Product.findByEan(product.ean);
     if (product == null) {
-      return notFound(String.format("Product %s does not exist.", ean));
+      return notFound(String.format("Product %s does not exist.", product.ean));
     }
     Form<Product> filledForm = productForm.fill(product);
     return ok(details.render(filledForm));
   }
-  public static Result delete(String ean) {
-  final Product product = Product.findByEan(ean);
+  public static Result delete(Product product) {
+ // final Product product = Product.findByEan(product);
   if(product == null) {
-    return notFound(String.format("Product %s does not exists.", ean));
+    return notFound(String.format("Product %s does not exists.", product.ean));
   }
   Product.remove(product);
   return redirect(routes.Products.list());

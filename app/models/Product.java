@@ -4,7 +4,8 @@ import java.util.List;
 import play.data.validation.Constraints;
 import controllers.Products;
 import java.util.LinkedList; // can de dung linkedlist
-public class Product {
+import play.mvc.PathBindable;
+public class Product  implements PathBindable<Product> {
 	public List<Tag> tags = new LinkedList<Tag>();
 	 private static List<Product> products;
   static {
@@ -20,6 +21,21 @@ public class Product {
     products.add(new Product("5555555555555", "Paperclips 5",
         "Paperclips description 5"));
   }
+  
+   @Override
+    public Product bind(String key, String value) {
+        return findByEan(value);
+    }
+ 
+    @Override
+    public String unbind(String key) {
+        return ean;
+    }
+ 
+    @Override
+    public String javascriptUnbind() {
+        return ean;
+    }
   
  @Constraints.Required
   public String ean;
