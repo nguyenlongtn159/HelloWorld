@@ -17,6 +17,8 @@ public class Product extends Model  implements PathBindable<Product> {
     public Long id; // la khoa
 
 	public List<Tag> tags = new LinkedList<Tag>();
+    public static Finder<Long,Product> find =
+            new Finder<Long,Product>(Long.class, Product.class);
 	 private static List<Product> products;
   static {
     products = new ArrayList<Product>();
@@ -66,10 +68,10 @@ public class Product extends Model  implements PathBindable<Product> {
   public String toString() {
     return String.format("%s - %s", ean, name);
   }
-  
-   public static List<Product> findAll() {
-    return new ArrayList<Product>(products);
-  }
+
+    public static List<Product> findAll() {
+        return find.all();
+    }
  
   public static Product findByEan(String ean) {
     for (Product candidate : products) {
