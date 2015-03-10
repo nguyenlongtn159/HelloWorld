@@ -39,6 +39,9 @@ private static final Form<Product> productForm = Form.form(Product.class);
   if(product == null) {
     return notFound(String.format("Product %s does not exists.", product.ean));
   }
+      for (StockItem stockItem : product.stockItems) {
+          stockItem.delete();
+      }
       product.delete();
       return redirect(routes.Products.list());
 }
@@ -62,8 +65,13 @@ private static final Form<Product> productForm = Form.form(Product.class);
         tags.add(Tag.findById(tag.id));
       }
     }
+        StockItem stockItem = new StockItem();
+        stockItem.product = product;
+        stockItem.quantity = 0L;
+
     product.tags = tags;
     product.save();
+        stockItem.save();
   
 
   flash("success", String.format("Successfully added product %s", product));
