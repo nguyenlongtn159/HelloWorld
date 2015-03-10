@@ -9,6 +9,7 @@ import play.mvc.PathBindable;
 import play.db.ebean.Model;
  import javax.persistence.Entity;
  import javax.persistence.Id;
+ import javax.persistence.ManyToMany;
  import javax.persistence.OneToMany;
 
 @Entity
@@ -17,7 +18,9 @@ public class Product extends Model  implements PathBindable<Product> {
     @Id
     public Long id; // la khoa
 
-	public List<Tag> tags = new LinkedList<Tag>();
+ //   @ManyToMany
+	//public List<Tag> tags = new LinkedList<Tag>();
+
     public static Finder<Long,Product> find =
             new Finder<Long,Product>(Long.class, Product.class);
 	 private static List<Product> products;
@@ -57,11 +60,15 @@ public class Product extends Model  implements PathBindable<Product> {
   public String name;
   
   public String description;
+
     @OneToMany(mappedBy="product")
     public List<StockItem> stockItems;
 
     public byte[] picture;
-  //  public List<Tag> tags;    // trường quan hệ nối với Tag
+
+    @ManyToMany
+    public List<Tag> tags;
+       //trường quan hệ nối với Tag
   public Product() {}
   public Product(String ean, String name, String description) {
     this.ean = ean;

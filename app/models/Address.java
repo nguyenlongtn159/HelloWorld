@@ -11,10 +11,12 @@ import play.db.ebean.Model;
  */
 @Entity
 public class Address extends Model{
+
     @Id
     public Long id;
 
     @OneToOne(mappedBy = "address")
+
     public Warehouse warehouse;
 
     public String street;
