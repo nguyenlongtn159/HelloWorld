@@ -72,16 +72,10 @@ public class Product extends Model  implements PathBindable<Product> {
     public static List<Product> findAll() {
         return find.all();
     }
- 
-  public static Product findByEan(String ean) {
-    for (Product candidate : products) {
-      if (candidate.ean.equals(ean)) {       
-        return candidate;
-      }
+
+    public static Product findByEan(String ean) {
+        return find.where().eq("ean", ean).findUnique();
     }
-    return null;
-  }
- 
   public static List<Product> findByName(String term) {
     final List<Product> results = new ArrayList<Product>();
     for (Product candidate : products) {
