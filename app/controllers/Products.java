@@ -2,7 +2,7 @@ package controllers;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;
- import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 import models.*;
 import views.html.products.*;

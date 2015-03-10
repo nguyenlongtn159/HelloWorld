@@ -5,7 +5,17 @@ import play.data.validation.Constraints;
 import controllers.Products;
 import java.util.LinkedList; // can de dung linkedlist
 import play.mvc.PathBindable;
-public class Product  implements PathBindable<Product> {
+//import dung ebean
+import play.db.ebean.Model;
+ import javax.persistence.Entity;
+ import javax.persistence.Id;
+
+@Entity
+public class Product extends Model  implements PathBindable<Product> {
+
+    @Id
+    public Long id; // la khoa
+
 	public List<Tag> tags = new LinkedList<Tag>();
 	 private static List<Product> products;
   static {
@@ -44,7 +54,9 @@ public class Product  implements PathBindable<Product> {
   public String name;
   
   public String description;
- 
+
+    public byte[] picture;
+  //  public List<Tag> tags;    // trường quan hệ nối với Tag
   public Product() {}
   public Product(String ean, String name, String description) {
     this.ean = ean;
