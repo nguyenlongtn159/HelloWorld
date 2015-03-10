@@ -86,10 +86,6 @@ public class Product extends Model  implements PathBindable<Product> {
     return results;
   }
   
- 
-  public static boolean remove(Product product) {
-    return products.remove(product);
-  }
- 
+
 
 }

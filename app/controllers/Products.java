@@ -39,8 +39,8 @@ private static final Form<Product> productForm = Form.form(Product.class);
   if(product == null) {
     return notFound(String.format("Product %s does not exists.", product.ean));
   }
-  Product.remove(product);
-  return redirect(routes.Products.list());
+      product.delete();
+      return redirect(routes.Products.list());
 }
 
 
