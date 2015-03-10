@@ -95,9 +95,5 @@ public class Product extends Model  implements PathBindable<Product> {
     return products.remove(product);
   }
  
-  public void save() {
-    products.remove(findByEan(this.ean));
-    products.add(this);
-  }
-  
+
 }

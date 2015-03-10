@@ -1,4 +1,5 @@
 package controllers;
+import com.avaje.ebean.Ebean;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;
@@ -54,6 +55,7 @@ private static final Form<Product> productForm = Form.form(Product.class);
   }
   
     Product product = boundForm.get();
+        Ebean.save(product);
     List<Tag> tags = new ArrayList<Tag>();
     for (Tag tag : product.tags) {
       if (tag.id != null) {
