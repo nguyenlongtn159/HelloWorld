@@ -14,6 +14,7 @@ public class StockItem extends Model {
     @Id
     public Long id;
 
+    @ManyToOne
     public Warehouse warehouse;
             // trường quan hệ nối với Warehouse
     @ManyToOne
