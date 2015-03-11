@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.*;
 import views.html.products.*;
+import play.db.ebean.Model;
 import play.data.validation.Constraints; // kiem tra loi ko dien
 // import thư mục liên quan
 // import play.mvc.*;
@@ -70,7 +71,12 @@ private static final Form<Product> productForm = Form.form(Product.class);
         stockItem.quantity = 0L;
 
     product.tags = tags;
-    product.save();
+
+        if (product.id == null) {
+            product.save();
+        } else {
+            product.update();
+        }
         stockItem.save();
   
 

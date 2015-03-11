@@ -21,6 +21,12 @@ public class Warehouse extends Model{
 
     @OneToMany(mappedBy = "warehouse")
 
+
+    public static Finder<Long, Tag> find =
+            new Finder<>(Long.class, Tag.class);
+    public static Tag findById(Long id) {
+        return find.byId(id);
+    }
     public List<StockItem> stock = new ArrayList();  // trường quan hệ
 
     public String toString() {

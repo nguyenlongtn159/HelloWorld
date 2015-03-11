@@ -23,20 +23,8 @@ public class Product extends Model  implements PathBindable<Product> {
 
     public static Finder<Long,Product> find =
             new Finder<Long,Product>(Long.class, Product.class);
-	 private static List<Product> products;
-  static {
-    products = new ArrayList<Product>();
-    products.add(new Product("1111111111111", "Paperclips 1",
-        "Paperclips description 1"));
-    products.add(new Product("2222222222222", "Paperclips 2",
-        "Paperclips description 2"));
-    products.add(new Product("3333333333333", "Paperclips 3",
-        "Paperclips description 3"));
-    products.add(new Product("4444444444444", "Paperclips 4",
-        "Paperclips description 4"));
-    products.add(new Product("5555555555555", "Paperclips 5",
-        "Paperclips description 5"));
-  }
+	// private static List<Product> products;
+
   
    @Override
     public Product bind(String key, String value) {
@@ -86,7 +74,7 @@ public class Product extends Model  implements PathBindable<Product> {
     public static Product findByEan(String ean) {
         return find.where().eq("ean", ean).findUnique();
     }
-  public static List<Product> findByName(String term) {
+ /* public static List<Product> findByName(String term) {
     final List<Product> results = new ArrayList<Product>();
     for (Product candidate : products) {
       if (candidate.name.toLowerCase().contains(term.toLowerCase())) {
@@ -96,6 +84,6 @@ public class Product extends Model  implements PathBindable<Product> {
     return results;
   }
   
-
+*/
 
 }
