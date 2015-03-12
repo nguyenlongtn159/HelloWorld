@@ -21,13 +21,15 @@ public class StockItem extends Model {
     public Product product;               // trường quan hệ nối với Product
     public Long quantity;
 
-    public static Finder<Long, Tag> find =
-            new Finder<>(Long.class, Tag.class);
-    public static Tag findById(Long id) {
+    public static Finder<Long, StockItem> find =
+            new Finder<>(Long.class, StockItem.class);
+    public static StockItem findById(Long id) {
         return find.byId(id);
     }
 
+
     public String toString() {
-        return String.format("$d %s", quantity, product);
+        return String.format("StockItem %d - %d x product %s",
+                id, quantity, product == null ? null : product.id);
     }
-}
+    }

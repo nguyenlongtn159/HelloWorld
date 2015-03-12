@@ -18,5 +18,8 @@ POST          /products             controllers.Products.save()
 
 DELETE        /products/:ean        controllers.Products.delete(ean: models.Product)
 
+GET           /stockitems/          controllers.StockItems.index()
+
+GET           /stockitems          controllers.StockItems.index()
 
 

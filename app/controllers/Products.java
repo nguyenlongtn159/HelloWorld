@@ -17,7 +17,10 @@ import play.data.validation.Constraints; // kiem tra loi ko dien
 //import models.Product;
 //  import views.html.products.list;
 public class Products extends Controller {
-private static final Form<Product> productForm = Form.form(Product.class);
+public static final Form<Product> productForm = Form.form(Product.class);
+    //tren la pravate
+
+
 	 public static Result list() {
     List<Product> products = Product.findAll();
     return ok(list.render(products));
@@ -52,13 +55,14 @@ private static final Form<Product> productForm = Form.form(Product.class);
 	
 	// kiem tra xem co loi hay khong
 	public static Result save() {
-  Form<Product> boundForm = productForm.bindFromRequest();
-  if (boundForm.hasErrors()) {
-    flash("error", "Please correct the form below.");
-    return badRequest(details.render(boundForm));
-  }
+        Form<Product> boundForm = productForm.bindFromRequest();
+        if (boundForm.hasErrors()) {
+            flash("error", "Please correct the form below.");
+            return badRequest(details.render(boundForm));
+        }
+        Product product = boundForm.get();
   
-    Product product = boundForm.get();
+
    // Ebean.save(product);
     List<Tag> tags = new ArrayList<Tag>();
     for (Tag tag : product.tags) {
