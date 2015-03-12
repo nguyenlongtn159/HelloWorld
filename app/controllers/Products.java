@@ -1,5 +1,6 @@
 package controllers;
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Page;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;
@@ -21,10 +22,10 @@ public static final Form<Product> productForm = Form.form(Product.class);
     //tren la pravate
 
 
-	 public static Result list() {
-    List<Product> products = Product.findAll();
-    return ok(list.render(products));
-  }
+    public static Result list(Integer page) {
+        Page<Product> products = Product.find(page);
+        return ok(list.render(products));
+    }
 // productForm = productForm.fill(product);
 	
 	public static Result newProduct(){
@@ -47,7 +48,7 @@ public static final Form<Product> productForm = Form.form(Product.class);
           stockItem.delete();
       }
       product.delete();
-      return redirect(routes.Products.list());
+      return redirect(routes.Products.list(0));
 }
 
 
@@ -85,7 +86,7 @@ public static final Form<Product> productForm = Form.form(Product.class);
   
 
   flash("success", String.format("Successfully added product %s", product));
-  return redirect(routes.Products.list());
+  return redirect(routes.Products.list(0));
 }
  
  

@@ -1,7 +1,9 @@
 package models;
  import java.util.ArrayList;
 import java.util.List;
-import play.data.validation.Constraints;
+
+ import com.avaje.ebean.Page;
+ import play.data.validation.Constraints;
 import controllers.Products;
 import java.util.LinkedList; // can de dung linkedlist
 import play.mvc.PathBindable;
@@ -69,6 +71,14 @@ public class Product extends Model  implements PathBindable<Product> {
 
     public static List<Product> findAll() {
         return find.all();
+    }
+
+    public static Page<Product> find(int page) {  // trả về trang thay vì List
+        return find.where()
+                .orderBy("id asc")     // sắp xếp tăng dần theo id
+                .findPagingList(5)    // quy định kích thước của trang
+                .setFetchAhead(false)  // có cần lấy tất cả dữ liệu một thể?
+                .getPage(page);    // lấy trang hiện tại, bắt đầu từ trang 0
     }
 
     public static Product findByEan(String ean) {
