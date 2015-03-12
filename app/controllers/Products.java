@@ -59,7 +59,7 @@ private static final Form<Product> productForm = Form.form(Product.class);
   }
   
     Product product = boundForm.get();
-        Ebean.save(product);
+   // Ebean.save(product);
     List<Tag> tags = new ArrayList<Tag>();
     for (Tag tag : product.tags) {
       if (tag.id != null) {
@@ -73,7 +73,7 @@ private static final Form<Product> productForm = Form.form(Product.class);
     product.tags = tags;
 
         if (product.id == null) {
-            product.save();
+        product.save();
         } else {
             product.update();
         }
