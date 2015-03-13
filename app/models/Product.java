@@ -11,6 +11,7 @@ import java.util.LinkedList; // can de dung linkedlist
 import play.mvc.PathBindable;
 //import dung ebean
 import play.db.ebean.Model;
+ import views.html.*;
 
  import javax.persistence.Entity;
  import javax.persistence.Id;

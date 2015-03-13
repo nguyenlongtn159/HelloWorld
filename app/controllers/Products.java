@@ -24,7 +24,7 @@ public static final Form<Product> productForm = Form.form(Product.class);
 
     public static Result list(Integer page) {
         Page<Product> products = Product.find(page);
-        return ok(list.render(products));
+        return ok(views.html.catalog.render(products));
     }
 // productForm = productForm.fill(product);
 	
