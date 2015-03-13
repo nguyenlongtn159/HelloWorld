@@ -40,7 +40,8 @@
       <tr>
         <th>EAN</th>
         <th>Name</th>
-        <th>Description</th>
+          <th>Description</th>
+          <th>Date</th>
       </tr>
     </thead>
     <tbody>
@@ -53,6 +54,10 @@
 @product.name</a></td>
         <td><a href="@routes.Products.details(product)">
 @product.description</a></td>
+          <td>@if(product.date != null) {
+              @product.date.format("dd-MM-yyyy")
+          }
+          </td>
   <td><a onclick="del('@routes.Products.delete(product)')">
                  <span class="glyphicon glyphicon-trash"></span>
             </a></td>

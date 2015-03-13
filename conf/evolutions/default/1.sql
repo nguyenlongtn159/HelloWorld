@@ -15,6 +15,7 @@ create table address (
 
 create table product (
   id                        bigint not null,
+  date                      timestamp,
   ean                       varchar(255),
   name                      varchar(255),
   description               varchar(255),

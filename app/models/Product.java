@@ -1,14 +1,17 @@
 package models;
  import java.util.ArrayList;
-import java.util.List;
+ import java.util.Date;
+ import java.util.List;
 
  import com.avaje.ebean.Page;
+ import play.data.format.Formats;
  import play.data.validation.Constraints;
 import controllers.Products;
 import java.util.LinkedList; // can de dung linkedlist
 import play.mvc.PathBindable;
 //import dung ebean
 import play.db.ebean.Model;
+
  import javax.persistence.Entity;
  import javax.persistence.Id;
  import javax.persistence.ManyToMany;
@@ -20,6 +23,9 @@ public class Product extends Model  implements PathBindable<Product> {
     @Id
     public Long id; // la khoa
 
+
+    @Formats.DateTime(pattern = "yyyy-MM-dd")
+    public Date date;
  //   @ManyToMany
 	//public List<Tag> tags = new LinkedList<Tag>();
 
