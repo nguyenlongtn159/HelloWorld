@@ -20,6 +20,12 @@ DELETE        /products/:ean        controllers.Products.delete(ean: models.Prod
 
 GET           /stockitems/          controllers.StockItems.index()
 
-GET           /stockitems          controllers.StockItems.index()
+GET           /stockitems           controllers.StockItems.index()
+
+GET           /login                controllers.Application.login()
+
+GET           /login/                controllers.Application.login()
+
+POST          /authenticate         controllers.Application.authenticate()
 
 
