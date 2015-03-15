@@ -1,10 +1,16 @@
 package controllers;
 
+<<<<<<< HEAD
 import models.UserAccount;
 
 import play.data.Form;
 import play.mvc.*;
 import static play.data.Form.form;
+=======
+import play.*;
+import play.mvc.*;
+
+>>>>>>> 2a403f63898d878a31c4c6c6d6f8e06463ccd5ed
 import views.html.*;
 
 public class Application extends Controller {
@@ -13,6 +19,7 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
+<<<<<<< HEAD
 
 
     public static class Login {
@@ -39,4 +46,6 @@ public class Application extends Controller {
 
         return redirect(routes.Products.list(0));
     }
+=======
+>>>>>>> 2a403f63898d878a31c4c6c6d6f8e06463ccd5ed
 }
