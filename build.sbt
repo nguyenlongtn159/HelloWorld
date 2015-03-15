@@ -11,8 +11,8 @@ libraryDependencies += javaEbean
 libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
+  "org.postgresql" % "postgresql" % "9.3-1100-jdbc41",
   cache,
   javaWs,
-"org.postgresql" % "postgresql" % "9.3-1100-jdbc41",
   filters
 )

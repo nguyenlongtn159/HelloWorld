@@ -19,7 +19,7 @@ create table product (
   ean                       varchar(255),
   name                      varchar(255),
   description               varchar(255),
-  picture                   varbinary(255),
+  picture                   bytea,
   constraint pk_product primary key (id))
 ;
 
@@ -69,38 +69,34 @@ create sequence user_account_seq;
 
 create sequence warehouse_seq;
 
-alter table stock_item add constraint fk_stock_item_warehouse_1 foreign key (warehouse_id) references warehouse (id) on delete restrict on update restrict;
+alter table stock_item add constraint fk_stock_item_warehouse_1 foreign key (warehouse_id) references warehouse (id);
 create index ix_stock_item_warehouse_1 on stock_item (warehouse_id);
-alter table stock_item add constraint fk_stock_item_product_2 foreign key (product_id) references product (id) on delete restrict on update restrict;
+alter table stock_item add constraint fk_stock_item_product_2 foreign key (product_id) references product (id);
 create index ix_stock_item_product_2 on stock_item (product_id);
-alter table warehouse add constraint fk_warehouse_address_3 foreign key (address_id) references address (id) on delete restrict on update restrict;
+alter table warehouse add constraint fk_warehouse_address_3 foreign key (address_id) references address (id);
 create index ix_warehouse_address_3 on warehouse (address_id);
 
 
 
-alter table product_tag add constraint fk_product_tag_product_01 foreign key (product_id) references product (id) on delete restrict on update restrict;
+alter table product_tag add constraint fk_product_tag_product_01 foreign key (product_id) references product (id);
 
-alter table product_tag add constraint fk_product_tag_tag_02 foreign key (tag_id) references tag (id) on delete restrict on update restrict;
+alter table product_tag add constraint fk_product_tag_tag_02 foreign key (tag_id) references tag (id);
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+drop table if exists address cascade;
 
-drop table if exists address;
+drop table if exists product cascade;
 
-drop table if exists product;
+drop table if exists product_tag cascade;
 
-drop table if exists product_tag;
+drop table if exists stock_item cascade;
 
-drop table if exists stock_item;
+drop table if exists tag cascade;
 
-drop table if exists tag;
+drop table if exists user_account cascade;
 
-drop table if exists user_account;
-
-drop table if exists warehouse;
-
-SET REFERENTIAL_INTEGRITY TRUE;
+drop table if exists warehouse cascade;
 
 drop sequence if exists address_seq;
 
