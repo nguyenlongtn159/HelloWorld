@@ -82,6 +82,7 @@ public static final Form<Product> productForm = Form.form(Product.class);
 
     product.tags = tags;
         if (product.id == null) {
+			if(Product.findByEan(product.ean) == null) 
         product.save();
         } else {
             product.update();
