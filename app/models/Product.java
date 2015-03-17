@@ -79,7 +79,13 @@ public class Product extends Model  implements PathBindable<Product> {
     public static List<Product> findAll() {
         return find.all();
     }
-
+	public void delete() {
+		for (Tag tag : tags) {
+			tag.products.remove(this);
+			tag.save();
+		}
+		super.delete();
+	} 
     public static Page<Product> find(int page) {  // trả về trang thay vì List
         return find.where()
                 .orderBy("id asc")     // sắp xếp tăng dần theo id
